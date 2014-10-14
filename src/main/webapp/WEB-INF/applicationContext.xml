@@ -15,9 +15,10 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+
     <!-- enabling annotation driven configuration /-->
     <context:annotation-config/>
-    <context:component-scan base-package="lv.k2611a.testapp"/>
+    <context:component-scan base-package="lv.przendzinski.freelance"/>
 
     <aop:aspectj-autoproxy/>
 

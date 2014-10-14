@@ -8,7 +8,11 @@
 <html>
 <body>
 
-<h1>YO</h1>
+    <h1>Добро пожаловать, <a href="/test-mvn-app/profile/${username}">${username}</a></h1>
+    <h3>Ваша активность за последний месяц</h3>
+    <ul>
+
+    </ul>
 
 </body>
 </html>

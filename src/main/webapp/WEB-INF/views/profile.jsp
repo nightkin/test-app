@@ -8,7 +8,15 @@
 <html>
 <body>
 
-<h1>YO</h1>
+    <h1>Настройки пользователя</h1>
+    <dl>
+        <dt>Username:</dt>
+        <dd>${name}</dd>
+        <dt>Password:</dt>
+        <dd>${password}</dd>
+        <dt>Role:</dt>
+        <dd>${role}</dd>
+    </dl>
 
 </body>
 </html>

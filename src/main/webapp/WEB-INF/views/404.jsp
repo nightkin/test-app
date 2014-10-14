@@ -8,7 +8,7 @@
 <html>
 <body>
 
-<h1>YO</h1>
+<h1>Sorry, this page was not found. Better luck next time.</h1>
 
 </body>
 </html>
