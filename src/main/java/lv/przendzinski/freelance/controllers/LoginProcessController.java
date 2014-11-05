@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-public class LoginPageController {
+public class LoginProcessController {
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("loginInfo")LoginInfo loginInfo, Model model) {
+    public String loginProcess(@ModelAttribute("loginInfo")LoginInfo loginInfo, Model model) {
         System.out.println(loginInfo);
         Boolean isValid = userService.authenticateUser(loginInfo.getUsername(), loginInfo.getPassword());
         if (isValid) {

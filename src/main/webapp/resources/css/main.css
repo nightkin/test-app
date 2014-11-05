@@ -1,0 +1,11 @@
+.toolbar {
+    height: 50px;
+    background: #333;
+    }
+
+.bg-warning {
+    padding: 10px;
+    border-radius: 3px;
+    background: #f99;
+    color: #fff;
+    }

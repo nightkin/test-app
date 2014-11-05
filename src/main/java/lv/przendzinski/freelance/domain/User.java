@@ -6,8 +6,8 @@ package lv.przendzinski.freelance.domain;
 public class User {
     private Long id;
     private String name;
-    private String role;
     private String password;
+    private Integer role;
 
     public Long getId() {
         return id;
@@ -17,7 +17,7 @@ public class User {
         return name;
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
@@ -28,7 +28,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public void setRole(String role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
@@ -36,7 +36,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String pass, String role) {
+    public User(String name, String pass, Integer role) {
         this.setName(name);
         this.setPassword(pass);
         this.setRole(role);

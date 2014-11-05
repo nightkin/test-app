@@ -10,30 +10,32 @@
 <body>
 <jsp:include page="toolbar.jsp"/>
 <div class="container">
-    <div class="col-md-8">
-        <h1>Добро пожаловать</h1>
-        <h3>Последние заказы</h3>
-        <ul>
-
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <form:form method="POST" action="login" modelAttribute="loginInfo" role="form">
-            <h3>Авторизируйтесь <small>/ <a href="register">регистрация</a></small></h3>
-            <div class="form-group">
-                <label for="username">Логин</label>
+    <div class="col-lg-4">
+        <form:form method="POST" action="/test-mvn-app/registration" modelAttribute="registerInfo" role="form">
+            <h3>Регистрация на портале</h3>
+            <c:if test="${not empty error}">
+                <p class="bg-warning">${error}</p>
+            </c:if>
+            <div class="form-group ${loginTaken ? 'has-error' : ''}">
+                <label for="username">Желаемый логин</label>
                 <form:input class="form-control" placeholder="username" path="username" id="username"/>
             </div>
             <div class="form-group">
-                <label for="password">Пароль</label>
+                <label for="password">Сложный пароль</label>
                 <form:input class="form-control" placeholder="password" type="password" path="password" id="password"/>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <form:checkbox id="role" value='employer' path="role"/>
+                        Я — заказчик
+                    </label>
+                </div>
             </div>
             <input class="btn btn-default" type="submit" value="Авторизироваться"/>
         </form:form>
     </div>
 </div>
-
 <jsp:include page="footer.jsp"/>
-
 </body>
 </html>

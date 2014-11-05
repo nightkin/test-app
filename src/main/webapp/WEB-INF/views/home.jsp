@@ -6,13 +6,16 @@
 
 <!DOCTYPE html>
 <html>
+<jsp:include page="header.jsp"/>
 <body>
-
-    <h1>Добро пожаловать, <a href="/test-mvn-app/profile/${username}">${username}</a></h1>
+<jsp:include page="toolbar.jsp"/>
+<div class="container">
+    <h1>Добро пожаловать, <a href="profile/${username}">${username}</a></h1>
     <h3>Ваша активность за последний месяц</h3>
     <ul>
 
     </ul>
-
+</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
