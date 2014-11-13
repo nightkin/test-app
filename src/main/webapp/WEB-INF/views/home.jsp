@@ -11,9 +11,11 @@
 <jsp:include page="toolbar.jsp"/>
 <div class="container">
     <h1>Добро пожаловать, <a href="profile/${username}">${username}</a></h1>
-    <h3>Ваша активность за последний месяц</h3>
+    <h3>Ваши последние заказы</h3>
     <ul>
-
+        <c:forEach var="task" items="${myTasks}">
+            <li><a href="task/${task.id}">${task.title} / $${task.bounty}</a></li>
+        </c:forEach>
     </ul>
 </div>
 <jsp:include page="footer.jsp"/>

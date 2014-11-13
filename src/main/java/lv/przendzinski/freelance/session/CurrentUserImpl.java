@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CurrentUserImpl implements CurrentUser {
     private String login;
+    private Long id;
 
     @Override
     public String getLogin() {
@@ -20,5 +21,15 @@ public class CurrentUserImpl implements CurrentUser {
     @Override
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 }

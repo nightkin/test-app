@@ -16,12 +16,13 @@ import java.util.List;
 public class UserService {
 
     private List<User> userList = new ArrayList<User>();
+    private Long userID = 0L;
 
     @PostConstruct
     public void init() {
-        User user1 = new User("admin", "qwerty", 2);
-        User user2 = new User("freelancer", "qwerty", 0);
-        User user3 = new User("client", "qwerty", 1);
+        User user1 = new User(userID++, "admin", "qwerty", 2);
+        User user2 = new User(userID++, "freelancer", "qwerty", 0);
+        User user3 = new User(userID++, "client", "qwerty", 1);
 
         userList.add(user1);
         userList.add(user2);
@@ -33,11 +34,24 @@ public class UserService {
             for (User user : userList) {
                 if ((user.getName().equals(userName)) && (user.getPassword().equals(password))) {
                     System.out.println(user);
+                    System.out.println(user.getId());
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    public User getUserByID(Long userID) {
+        if (userID != null) {
+            for (User user : userList) {
+                if ((user.getId().equals(userID))) {
+                    System.out.println(user);
+                    return user;
+                }
+            }
+        }
+        return null;
     }
 
     public User getUserByName(String userName) {
@@ -62,11 +76,15 @@ public class UserService {
 
         if (nameIsAvailable) {
             Integer userRole = role != null ? 1 : 0;
-            User newUser = new User(userName, password, userRole);
+            User newUser = new User(userID++, userName, password, userRole);
             userList.add(newUser);
-            System.out.println(userList);
             return newUser;
         }
         throw new UserAlreadyExistsException("User already exists");
     }
+
+    public void deleteUser(String userID) {
+        //TODO: write some code
+    }
+
 }

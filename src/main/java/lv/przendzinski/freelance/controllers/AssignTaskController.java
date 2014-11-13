@@ -1,10 +1,9 @@
 package lv.przendzinski.freelance.controllers;
 
-import lv.przendzinski.freelance.domain.User;
-import lv.przendzinski.freelance.dto.LoginInfo;
+import lv.przendzinski.freelance.dto.AssignInfo;
+import lv.przendzinski.freelance.services.TaskService;
 import lv.przendzinski.freelance.services.UserService;
 import lv.przendzinski.freelance.session.CurrentUser;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,24 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-public class LoginProcessController {
+public class AssignTaskController {
 
     @Autowired
-    private UserService userService;
+    private TaskService taskService;
 
     @Autowired
     private CurrentUser currentUser;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginProcess(@ModelAttribute("loginInfo")LoginInfo loginInfo) {
-        Boolean isValid = userService.authenticateUser(loginInfo.getUsername(), loginInfo.getPassword());
-
-        if (isValid) {
-            User user = userService.getUserByName(loginInfo.getUsername());
-            currentUser.setLogin(loginInfo.getUsername());
-            currentUser.setId(user.getId());
-            return "redirect:home";
-        }
+    @RequestMapping(value = "/assign", method = RequestMethod.POST)
+    public String assignProcess(@ModelAttribute("assignInfo")AssignInfo assignInfo, Model model) {
+//        TODO: write awesome code
         return "404";
     }
 }

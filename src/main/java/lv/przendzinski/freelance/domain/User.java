@@ -25,6 +25,9 @@ public class User {
         return password;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
     public void setName(String name) {
         this.name = name;
     }
@@ -36,7 +39,8 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String pass, Integer role) {
+    public User(Long id, String name, String pass, Integer role) {
+        this.setId(id);
         this.setName(name);
         this.setPassword(pass);
         this.setRole(role);

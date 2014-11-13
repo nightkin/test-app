@@ -12,9 +12,11 @@
 <div class="container">
     <div class="col-md-8">
         <h1>Добро пожаловать</h1>
-        <h3>Последние заказы</h3>
+        <h3>Открытые заказы</h3>
         <ul>
-
+            <c:forEach var="task" items="${openTasks}">
+                <li>${task.title} / $${task.bounty}</li>
+            </c:forEach>
         </ul>
     </div>
     <div class="col-md-4">
