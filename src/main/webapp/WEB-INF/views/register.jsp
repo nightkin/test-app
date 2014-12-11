@@ -11,7 +11,7 @@
 <jsp:include page="toolbar.jsp"/>
 <div class="container">
     <div class="col-lg-4">
-        <form:form method="POST" action="/test-mvn-app/registration" modelAttribute="registerInfo" role="form">
+        <form:form method="POST" action="registration" modelAttribute="registerInfo" role="form">
             <h3>Регистрация на портале</h3>
             <c:if test="${not empty error}">
                 <p class="bg-warning">${error}</p>

@@ -1,11 +1,13 @@
 package lv.przendzinski.freelance.services;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.TypeCheckError;
 import org.springframework.stereotype.Service;
 
 import lv.przendzinski.freelance.domain.User;
 import lv.przendzinski.freelance.domain.UserAlreadyExistsException;
 
 import javax.annotation.PostConstruct;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +22,48 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        User user1 = new User(userID++, "admin", "qwerty", 2);
-        User user2 = new User(userID++, "freelancer", "qwerty", 0);
-        User user3 = new User(userID++, "client", "qwerty", 1);
+        userList = getUsers();
+    }
 
-        userList.add(user1);
-        userList.add(user2);
-        userList.add(user3);
+    private List<User> getUsers() {
+        try {
+            InputStream file = new FileInputStream("users");
+            InputStream buffer = new BufferedInputStream(file);
+            ObjectInput input = new ObjectInputStream(buffer);
+            try {
+                userList = (ArrayList<User>) input.readObject();
+            }
+            finally {
+                input.close();
+            }
+        }
+        catch(ClassNotFoundException ex){
+            System.out.println(ex);
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(ex);
+        }
+        catch(IOException ex){
+            System.out.println(ex);
+        }
+        return userList;
+    }
+
+    private void saveUsers(List<User> users) {
+        try {
+            OutputStream file = new FileOutputStream("users");
+            OutputStream buffer = new BufferedOutputStream(file);
+            ObjectOutput output = new ObjectOutputStream(buffer);
+            try {
+                output.writeObject(users);
+            }
+            finally {
+                output.close();
+            }
+        }
+        catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     public Boolean authenticateUser(String userName, String password) {
@@ -78,6 +115,7 @@ public class UserService {
             Integer userRole = role != null ? 1 : 0;
             User newUser = new User(userID++, userName, password, userRole);
             userList.add(newUser);
+            saveUsers(userList);
             return newUser;
         }
         throw new UserAlreadyExistsException("User already exists");
