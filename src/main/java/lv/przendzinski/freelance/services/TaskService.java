@@ -2,6 +2,8 @@ package lv.przendzinski.freelance.services;
 
 import lv.przendzinski.freelance.domain.User;
 import lv.przendzinski.freelance.domain.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import lv.przendzinski.freelance.services.UserService;
 
@@ -19,6 +21,7 @@ public class TaskService {
 
     private List<Task> taskList = new ArrayList<Task>();
     private Long taskID = 0L;
+    private static final Logger LOG = LoggerFactory.getLogger(TaskService.class);
 
     @PostConstruct
     public void init() {
@@ -51,7 +54,7 @@ public class TaskService {
         List<Task> myTasks = new ArrayList<Task>();
         for (Task task : taskList) {
             if (task.getReporter() == userID) {
-                System.out.println(task);
+                LOG.info("New task created: {}", task);
                 myTasks.add(task);
             }
         }
@@ -79,6 +82,7 @@ public class TaskService {
             if (task.getId().equals(taskID)) {
                 //TODO: check is current user is admin
                 if (task.getReporter().equals(userID)) {
+                    LOG.info("Task deleted: {}", task.getReporter());
                     i.remove();
                 }
                 break;

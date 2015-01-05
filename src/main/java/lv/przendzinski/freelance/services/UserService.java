@@ -1,6 +1,8 @@
 package lv.przendzinski.freelance.services;
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.TypeCheckError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import lv.przendzinski.freelance.domain.User;
@@ -19,6 +21,7 @@ public class UserService {
 
     private List<User> userList = new ArrayList<User>();
     private Long userID = 0L;
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @PostConstruct
     public void init() {
@@ -38,13 +41,13 @@ public class UserService {
             }
         }
         catch(ClassNotFoundException ex){
-            System.out.println(ex);
+            LOG.error("Error: {}", ex);
         }
         catch(FileNotFoundException ex) {
-            System.out.println(ex);
+            LOG.error("Error: {}", ex);
         }
         catch(IOException ex){
-            System.out.println(ex);
+            LOG.error("Error: {}", ex);
         }
         return userList;
     }
@@ -62,7 +65,7 @@ public class UserService {
             }
         }
         catch (IOException ex) {
-            System.out.println(ex);
+            LOG.error("Error: {}", ex);
         }
     }
 
@@ -70,12 +73,12 @@ public class UserService {
         if (userName != null) {
             for (User user : userList) {
                 if ((user.getName().equals(userName)) && (user.getPassword().equals(password))) {
-                    System.out.println(user);
-                    System.out.println(user.getId());
+                    LOG.info("User logged in: {}", user.getId());
                     return true;
                 }
             }
         }
+        LOG.error("Authentication failed: {}/{}", userName, password);
         return false;
     }
 
@@ -83,7 +86,7 @@ public class UserService {
         if (userID != null) {
             for (User user : userList) {
                 if ((user.getId().equals(userID))) {
-                    System.out.println(user);
+                    LOG.info("User found by ID: {}", user);
                     return user;
                 }
             }
@@ -95,7 +98,7 @@ public class UserService {
         if (userName != null) {
             for (User user : userList) {
                 if ((user.getName().equals(userName))) {
-                    System.out.println(user);
+                    LOG.info("User found by name: {}", user);
                     return user;
                 }
             }

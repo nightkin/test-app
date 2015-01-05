@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
+
 public class User implements Serializable {
     private Long id;
     private String name;
