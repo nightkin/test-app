@@ -5,8 +5,9 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 /**
- * @author <a href="mailto:kirill.afanasjev@odnoklassniki.ru">Kirill Afanasjev</a>
+ * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
+
 @Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
 @Component
 public class CurrentUserImpl implements CurrentUser {

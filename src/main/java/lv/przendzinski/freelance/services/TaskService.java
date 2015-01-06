@@ -1,14 +1,11 @@
 package lv.przendzinski.freelance.services;
 
-import lv.przendzinski.freelance.domain.User;
 import lv.przendzinski.freelance.domain.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import lv.przendzinski.freelance.services.UserService;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,7 +17,7 @@ import java.util.List;
 public class TaskService {
 
     private List<Task> taskList = new ArrayList<Task>();
-    private Long taskID = 0L;
+    private long taskID = 0L;
     private static final Logger LOG = LoggerFactory.getLogger(TaskService.class);
 
     @PostConstruct

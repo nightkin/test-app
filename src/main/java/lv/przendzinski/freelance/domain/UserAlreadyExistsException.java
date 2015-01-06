@@ -1,7 +1,7 @@
 package lv.przendzinski.freelance.domain;
 
 /**
- * Created by denissprzendzinskis on 05/11/14.
+ * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
 
 public class UserAlreadyExistsException extends Exception {

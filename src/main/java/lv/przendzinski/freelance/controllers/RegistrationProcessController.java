@@ -1,5 +1,7 @@
 package lv.przendzinski.freelance.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import lv.przendzinski.freelance.domain.UserAlreadyExistsException;
 import lv.przendzinski.freelance.dto.RegisterInfo;
 import lv.przendzinski.freelance.services.UserService;
@@ -20,10 +22,10 @@ public class RegistrationProcessController {
     @Autowired
     private UserService userService;
 
+    private static final Logger LOG = LoggerFactory.getLogger(RegistrationProcessController.class);
+
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registrationProcess(@ModelAttribute("registerInfo")RegisterInfo registerInfo, Model model) {
-        System.out.println(registerInfo);
-
         try {
             userService.createUser(
                     registerInfo.getUsername(),
@@ -31,15 +33,16 @@ public class RegistrationProcessController {
                     registerInfo.getRole()
             );
 
+            LOG.info("New user created: {}", registerInfo.getUsername());
             model.addAttribute("username", registerInfo.getUsername());
             return "home";
         }
         catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            LOG.error("Error: {}", e.getMessage());
             model.addAttribute("error", e.getMessage());
         }
         catch (UserAlreadyExistsException e) {
-            System.out.println(e.getMessage());
+            LOG.error("Error: {}", e.getMessage());
             model.addAttribute("error", e.getMessage());
         }
 

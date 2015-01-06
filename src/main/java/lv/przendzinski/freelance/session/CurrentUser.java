@@ -1,8 +1,9 @@
 package lv.przendzinski.freelance.session;
 
 /**
- * @author <a href="mailto:kirill.afanasjev@odnoklassniki.ru">Kirill Afanasjev</a>
+ * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
+
 public interface CurrentUser {
     String getLogin();
     Long getId();

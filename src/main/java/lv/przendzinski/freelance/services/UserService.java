@@ -1,6 +1,5 @@
 package lv.przendzinski.freelance.services;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.TypeCheckError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,7 @@ import java.util.List;
 public class UserService {
 
     private List<User> userList = new ArrayList<User>();
-    private Long userID = 0L;
+    private long userID = 0L;
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @PostConstruct

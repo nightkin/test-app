@@ -13,8 +13,9 @@ import lv.przendzinski.freelance.session.CurrentUser;
 import java.util.List;
 
 /**
- * @author <a href="mailto:kirill.afanasjev@odnoklassniki.ru">Kirill Afanasjev</a>
+ * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
+
 @Controller
 public class HomePageController {
 

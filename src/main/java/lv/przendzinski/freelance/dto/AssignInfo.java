@@ -1,7 +1,7 @@
 package lv.przendzinski.freelance.dto;
 
 /**
- * Created by denissprzendzinskis on 14/10/14.
+ * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
 
 public class AssignInfo {

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
+/**
+ * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
+ */
+
 @Controller
 public class FrontPageController {
 
