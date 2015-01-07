@@ -7,12 +7,12 @@ import java.io.Serializable;
  */
 
 public class User implements Serializable {
-    private Long id;
+    private long id;
     private String name;
     private String password;
-    private Integer role;
+    private int role;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -20,7 +20,7 @@ public class User implements Serializable {
         return name;
     }
 
-    public Integer getRole() {
+    public int getRole() {
         return role;
     }
 
@@ -28,13 +28,13 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
     public void setName(String name) {
         this.name = name;
     }
-    public void setRole(Integer role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -42,7 +42,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(Long id, String name, String pass, Integer role) {
+    public User(long id, String name, String pass, int role) {
         this.setId(id);
         this.setName(name);
         this.setPassword(pass);

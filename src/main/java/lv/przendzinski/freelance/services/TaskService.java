@@ -47,7 +47,7 @@ public class TaskService {
         return openTasks;
     }
 
-    public List<Task> getMyTasks(Long userID) {
+    public List<Task> getMyTasks(long userID) {
         List<Task> myTasks = new ArrayList<Task>();
         for (Task task : taskList) {
             if (task.getReporter() == userID) {
@@ -58,9 +58,9 @@ public class TaskService {
         return myTasks;
     }
 
-    public Task getTaskById(Long taskID) {
+    public Task getTaskById(long taskID) {
         for (Task task : taskList) {
-            if (task.getId().equals(taskID)) {
+            if (task.getId() == taskID) {
                 return task;
             }
         }
@@ -71,14 +71,14 @@ public class TaskService {
 //        return false;
 //    }
 
-    public void deleteTask(Long taskID, Long userID) {
+    public void deleteTask(long taskID, long userID) {
         //TODO: forbid deletion by regular user if the task was already assigned
         Iterator<Task> i = taskList.iterator();
         while (i.hasNext()) {
             Task task = i.next();
-            if (task.getId().equals(taskID)) {
+            if (task.getId() == taskID) {
                 //TODO: check is current user is admin
-                if (task.getReporter().equals(userID)) {
+                if (task.getReporter() == userID) {
                     LOG.info("Task deleted: {}", task.getReporter());
                     i.remove();
                 }

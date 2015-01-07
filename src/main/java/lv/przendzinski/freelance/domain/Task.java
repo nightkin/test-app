@@ -4,14 +4,14 @@ package lv.przendzinski.freelance.domain;
  * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
  */
 public class Task {
-    private Long id;
+    private long id;
     private String title;
     private String description;
-    private Long reporter;
+    private long reporter;
     private Long assignee;
-    private Long dateCreated;
+    private long dateCreated;
     private Long deadline;
-    private Long bounty;
+    private long bounty;
 
     public String getTitle() {
         return title;
@@ -21,19 +21,19 @@ public class Task {
         this.title = title;
     }
 
-    public Long getBounty() {
+    public long getBounty() {
         return bounty;
     }
 
-    public void setBounty(Long bounty) {
+    public void setBounty(long bounty) {
         this.bounty = bounty;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -45,11 +45,11 @@ public class Task {
         this.description = description;
     }
 
-    public Long getReporter() {
+    public long getReporter() {
         return reporter;
     }
 
-    public void setReporter(Long reporter) {
+    public void setReporter(long reporter) {
         this.reporter = reporter;
     }
 
@@ -61,11 +61,11 @@ public class Task {
         this.assignee = assignee;
     }
 
-    public Long getDateCreated() {
+    public long getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Long dateCreated) {
+    public void setDateCreated(long dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -77,11 +77,13 @@ public class Task {
         this.deadline = deadline;
     }
 
-    public Task(Long id, String title, String description, Long owner, Long deadline, Long bounty) {
+
+
+    public Task(long id, String title, String description, long reporter, long deadline, long bounty) {
         this.setId(id);
         this.setTitle(title);
         this.setDescription(description);
-        this.setReporter(owner);
+        this.setReporter(reporter);
         this.setDeadline(deadline);
         this.setBounty(bounty);
         this.setDateCreated(System.currentTimeMillis());

@@ -5,14 +5,14 @@ package lv.przendzinski.freelance.dto;
  */
 
 public class AssignInfo {
-    private Long taskID;
+    private long taskID;
     private Long assigneeID;
 
-    public Long getTaskID() {
+    public long getTaskID() {
         return taskID;
     }
 
-    public void setTaskID(Long taskID) {
+    public void setTaskID(long taskID) {
         this.taskID = taskID;
     }
 

@@ -36,13 +36,11 @@ public class RegistrationProcessController {
             LOG.info("New user created: {}", registerInfo.getUsername());
             model.addAttribute("username", registerInfo.getUsername());
             return "home";
-        }
-        catch (IllegalArgumentException e) {
-            LOG.error("Error: {}", e.getMessage());
+        } catch (IllegalArgumentException e) {
+            LOG.error("Error: {}", e);
             model.addAttribute("error", e.getMessage());
-        }
-        catch (UserAlreadyExistsException e) {
-            LOG.error("Error: {}", e.getMessage());
+        } catch (UserAlreadyExistsException e) {
+            LOG.error("Error: {}", e);
             model.addAttribute("error", e.getMessage());
         }
 

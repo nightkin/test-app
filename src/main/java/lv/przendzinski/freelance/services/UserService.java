@@ -1,16 +1,17 @@
 package lv.przendzinski.freelance.services;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import lv.przendzinski.freelance.domain.User;
 import lv.przendzinski.freelance.domain.UserAlreadyExistsException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * @author <a href="mailto:nightkin@gmail.com">Dennis Przendzinski</a>
@@ -30,7 +31,8 @@ public class UserService {
     private List<User> getUsers() {
         try {
             InputStream file = new FileInputStream("users");
-            InputStream buffer = new BufferedInputStream(file);
+            GZIPInputStream gz = new GZIPInputStream(file);
+            InputStream buffer = new BufferedInputStream(gz);
             ObjectInput input = new ObjectInputStream(buffer);
             try {
                 userList = (ArrayList<User>) input.readObject();
@@ -54,7 +56,8 @@ public class UserService {
     private void saveUsers(List<User> users) {
         try {
             OutputStream file = new FileOutputStream("users");
-            OutputStream buffer = new BufferedOutputStream(file);
+            GZIPOutputStream gz = new GZIPOutputStream(file);
+            OutputStream buffer = new BufferedOutputStream(gz);
             ObjectOutput output = new ObjectOutputStream(buffer);
             try {
                 output.writeObject(users);
@@ -81,13 +84,11 @@ public class UserService {
         return false;
     }
 
-    public User getUserByID(Long userID) {
-        if (userID != null) {
-            for (User user : userList) {
-                if ((user.getId().equals(userID))) {
-                    LOG.info("User found by ID: {}", user);
-                    return user;
-                }
+    public User getUserByID(long userID) {
+        for (User user : userList) {
+            if ((user.getId() == userID)) {
+                LOG.info("User found by ID: {}", user);
+                return user;
             }
         }
         return null;
