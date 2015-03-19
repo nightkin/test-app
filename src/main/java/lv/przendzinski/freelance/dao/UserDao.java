@@ -20,6 +20,15 @@ public class UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    RowMapper<User> rowMapper = new RowMapper<User>() {
+        @Override
+        public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            User result = new User(resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
+            result.setId(resultSet.getInt(1));
+            return result;
+        }
+    };
+
     public int getUserCount() {
         return this.jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users", Integer.class);
     }
@@ -34,24 +43,10 @@ public class UserDao {
     }
 
     public List<User> getAllUsers() {
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User result = new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
-                return result;
-            }
-        };
         return this.jdbcTemplate.query("SELECT id, name, password, role FROM users", rowMapper);
     }
 
     public User getByName(String userName) {
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User result = new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
-                return result;
-            }
-        };
         List<User> result = this.jdbcTemplate.query("SELECT id, name, password, role FROM users WHERE name = ?", rowMapper, userName);
         if (result.isEmpty()) {
             return null;
@@ -60,13 +55,6 @@ public class UserDao {
     }
 
     public User getById(long userID) {
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User result = new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4));
-                return result;
-            }
-        };
         List<User> result = this.jdbcTemplate.query("SELECT id, name, password, role FROM users WHERE id = ?", rowMapper, userID);
         if (result.isEmpty()) {
             return null;

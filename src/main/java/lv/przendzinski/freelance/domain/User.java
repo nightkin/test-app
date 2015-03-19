@@ -42,8 +42,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(long id, String name, String pass, int role) {
-        this.setId(id);
+    public User(String name, String pass, int role) {
         this.setName(name);
         this.setPassword(pass);
         this.setRole(role);

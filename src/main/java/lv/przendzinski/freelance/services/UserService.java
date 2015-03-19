@@ -21,17 +21,10 @@ import java.util.zip.GZIPOutputStream;
 @Service
 public class UserService {
 
-    private List<User> userList = new ArrayList<User>();
-    private long userID = 0L;
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     UserDao userDao;
-
-    @PostConstruct
-    public synchronized void init() {
-        userList = userDao.getAllUsers();
-    }
 
 //    private List<User> getUsers() {
 //        try {
@@ -76,7 +69,7 @@ public class UserService {
 //        }
 //    }
 
-    public synchronized Boolean authenticateUser(String userName, String password) {
+    public synchronized boolean authenticateUser(String userName, String password) {
         return userDao.authenticateUser(userName, password);
     }
 
@@ -98,7 +91,7 @@ public class UserService {
 
         if (nameIsAvailable) {
             Integer userRole = role != null ? 1 : 0;
-            User newUser = new User(userID++, userName, password, userRole);
+            User newUser = new User(userName, password, userRole);
             userDao.createUser(newUser);
             return newUser;
         }
