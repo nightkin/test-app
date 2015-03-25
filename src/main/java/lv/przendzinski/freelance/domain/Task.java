@@ -79,14 +79,13 @@ public class Task {
 
 
 
-    public Task(long id, String title, String description, long reporter, long deadline, long bounty) {
-        this.setId(id);
-        this.setTitle(title);
-        this.setDescription(description);
-        this.setReporter(reporter);
-        this.setDeadline(deadline);
-        this.setBounty(bounty);
-        this.setDateCreated(System.currentTimeMillis());
-    }
+//    public Task(String title, String description, long reporter, long deadline, long bounty) {
+//        this.setTitle(title);
+//        this.setDescription(description);
+//        this.setReporter(reporter);
+//        this.setDeadline(deadline);
+//        this.setBounty(bounty);
+//        this.setDateCreated(System.currentTimeMillis());
+//    }
 
 }
