@@ -13,6 +13,9 @@
     <div class="col-lg-4">
         <form:form method="POST" action="task-creation" modelAttribute="createTaskInfo" role="form">
             <h3>Создание новой задачи</h3>
+            <c:if test="${not empty error}">
+                <p class="bg-warning">${error}</p>
+            </c:if>
             <div class="form-group">
                 <label for="username">Заголовок</label>
                 <form:input class="form-control" placeholder="текст заголовка" path="title" id="title"/>
