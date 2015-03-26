@@ -17,6 +17,7 @@
             <li><a href="task/${task.id}">${task.title} / $${task.bounty}</a></li>
         </c:forEach>
     </ul>
+    <a href="new-task">Создать задачу</a>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>
