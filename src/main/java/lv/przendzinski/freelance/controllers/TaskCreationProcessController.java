@@ -35,13 +35,13 @@ public class TaskCreationProcessController {
     @RequestMapping(value = "/task-creation", method = RequestMethod.POST)
     public String taskCreationProcess(@ModelAttribute("createTaskInfo")CreateTaskInfo createTaskInfo, Model model) {
         try {
-            Long date = new SimpleDateFormat("yyy-mm-dd").parse(createTaskInfo.getDeadline()).getTime();
+            Long convertedDeadline = new SimpleDateFormat("yyy-mm-dd").parse(createTaskInfo.getDeadline()).getTime();
             Task task = new Task();
             task.setTitle(createTaskInfo.getTitle());
             task.setDescription(createTaskInfo.getDescription());
             task.setBounty(createTaskInfo.getBounty());
             task.setDateCreated(System.currentTimeMillis());
-            task.setDeadline(date);
+            task.setDeadline(convertedDeadline);
             task.setReporter(currentUser.getId());
 
             taskService.createTask(task);
